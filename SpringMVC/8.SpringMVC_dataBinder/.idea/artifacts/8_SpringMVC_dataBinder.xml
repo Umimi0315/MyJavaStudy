@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="8.SpringMVC_dataBinder">
+    <output-path>$PROJECT_DIR$/out/artifacts/8_SpringMVC_dataBinder</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="8.SpringMVC_dataBinder/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="8.SpringMVC_dataBinder" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.EmployeeDao">
+
+    <cache type="com.baizhi.cache.RedisCache"/>
+    <!--    public List<Employee> findAll();-->
+    <select id="findAll" resultType="com.baizhi.entity.Employee">
+     select id,lastName,email,gender,d_id from employee
+    </select>
+
+    <!--public Employee findEmpById(Integer id);-->
+    <select id="findEmpById" resultType="com.baizhi.entity.Employee">
+     select id,lastName,email,gender,d_id from employee where id=#{id}
+    </select>
+
+    <!--public void deleteById(Integer id);-->
+    <delete id="deleteById" parameterType="Integer">
+        delete from employee where id=#{id}
+    </delete>
+
+    <!--public void saveEmp(Employee employee);-->
+    <insert id="saveEmp" parameterType="com.baizhi.entity.Employee">
+        insert into employee(lastName,email,gender,d_id) values (#{lastName},#{email},#{gender},#{dId})
+    </insert>
+
+    <!--public void updateEmp(Employee employee);-->
+    <update id="updateEmp" parameterType="com.baizhi.entity.Employee">
+        update employee set lastName=#{lastName},email=#{email},gender=#{gender},d_id=#{dId} where id=#{id}
+    </update>
+</mapper>

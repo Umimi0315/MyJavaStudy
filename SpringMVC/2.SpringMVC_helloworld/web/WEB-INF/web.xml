@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <!--*.do    *.action    *.haha-->
+    <!--
+        /:拦截所有请求，不拦截jsp页面，*.jsp请求
+        /*:拦截所有请求，拦截jsp页面，*.jsp请求
+
+        处理*.jsp是Tomcat做的事；所有的小web.xml都是继承于大web.xml
+        DefaultServlet是Tomcat中处理静态资源的？
+            除过jsp和servlet剩下的都是静态资源；
+            index.html：静态资源，Tomcat就会在服务器下找到这个资源并返回；
+            我们前端控制器的/禁用了Tomcat服务器中的DefaultServlet
+
+        1)服务器的大web.xml中有一个DefaultServlet是url-pattern=/
+        2）我们的配置中前端控制器url-pattern=/
+                静态资源会来到DispatcherServlet（前端控制器）看哪个方法的RequestrianMapping是这个index.html
+        3)为什么jsp又能访问；因为我们没有覆盖服务器中的JspServlet的配置
+        4）/*直接就是拦截所有请求;我们写/；也是 为了迎合后来的Rest风格的URL地址
+    -->
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>

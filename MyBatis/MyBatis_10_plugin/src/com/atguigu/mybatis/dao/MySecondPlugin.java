@@ -1,0 +1,30 @@
+package com.atguigu.mybatis.dao;
+
+import org.apache.ibatis.executor.statement.PreparedStatementHandler;
+import org.apache.ibatis.plugin.*;
+
+import java.util.Properties;
+
+@Intercepts(
+        {
+                @Signature(type = PreparedStatementHandler.class,method = "parameterize",args = java.sql.Statement.class)
+        }
+)
+public class MySecondPlugin implements Interceptor {
+    @Override
+    public Object intercept(Invocation invocation) throws Throwable {
+        System.out.println("MySecondPlugin...intercept:"+invocation.getMethod());
+        return invocation.proceed();
+    }
+
+    @Override
+    public Object plugin(Object target) {
+        System.out.println("MySecondPlugin...plugin:"+target);
+        return Plugin.wrap(target, this);
+    }
+
+    @Override
+    public void setProperties(Properties properties) {
+
+    }
+}
